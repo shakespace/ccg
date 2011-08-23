@@ -41,7 +41,17 @@ final class DatabaseConnection extends Config
 	
 	public function query($query)
 	{
-		return mysql_query($query);
+		return mysql_query($query, self::$link);
+	}
+	
+	public function last_insert_id()
+	{
+		return mysql_insert_id(self::$link);
+	}
+	
+	public function last_error()
+	{
+		return mysql_error(self::$link);
 	}
 }
 	
