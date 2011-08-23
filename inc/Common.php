@@ -1,5 +1,18 @@
 ﻿<?php
 
+
+//print an object or array for debug information
+function debug_print($obj) {
+	echo '<pre>';
+	print_r($obj);
+	echo '</pre>';
+}
+
+
+//********************************
+//  XML functions
+//********************************
+
 //parse xml to array
 //parameters:
 //	file_name: the name of the xml file
@@ -117,13 +130,6 @@ function xml2array($file_name, $index_base=0, $value_key=null) {
 }
 
 
-//print an object or array for debug information
-function debug_print($obj) {
-	echo '<pre>';
-	print_r($obj);
-	echo '</pre>';
-}
-
 
 function getMissionsFromXML() {
 	$obj = xml2array('xml/missions.xml', 1);
@@ -144,6 +150,68 @@ function getBuffsFromXML() {
 	$obj = xml2array('xml/buffs.xml', 1);
 	return $obj['buffs']['1'];
 }
+
+
+
+
+
+
+
+
+//********************************
+//  Stamina calculation
+//********************************
+
+
+//return:
+//>=0 : successfully consumed
+//<0  : not enough stamina
+function updateStamina(&$player, $stamina_consume=0) {
+	debug_print('Player had '.$player['stamina'].' stamina by '.$player['stamina_last_update']);
+	debug_print('Player uses '.$stamina_consume.' points of stamina');
+	
+	$current_time = time();
+	$new_stamina = $player['stamina'];
+	$prev_min = floor($player['stamina_last_update'] / 60);
+	$current_min = floor($current_time / 60);
+	require_once('inc/Const.php');
+	if ($current_min > $prev_min) {
+		$new_stamina += ($current_min - $prev_min) * constant('STAMINA_PER_MIN');
+		if ($new_stamina > constant('STAMINA_MAX')) $new_stamina = constant('STAMINA_MAX');
+	}
+	$result = $new_stamina;
+	if ($stamina_consume > 0 ) {
+		if ($new_stamina > $stamina_consume) {
+			$new_stamina -= $stamina_consume;
+			$player['stamina'] = $new_stamina;
+			$player['stamina_last_update'] = $current_time;
+			$result = $new_stamina;
+		} else {
+			$result = -1;
+			debug_print('Not enough stamina!');
+		}
+	} 
+	updatePlayerInfo($player);
+	debug_print('Now player has '.$player['stamina'].' stamina by '.$player['stamina_last_update']);
+	return $result;
+}
+
+
+
+//********************************
+//  time related
+//********************************
+
+
+
+
+
+//********************************
+//  
+//********************************
+
+
+
 
 
 

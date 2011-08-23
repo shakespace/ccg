@@ -1,7 +1,7 @@
 ﻿<?php
 	
-	$player_id = $_GET['player_id'];
-	$session_id = $_GET['session_id'];
+	$playerId = $_GET['playerId'];
+	$sessionId = $_GET['sessionId'];
 
 	//required parameter validations.
 
@@ -13,16 +13,44 @@
 	$data = null;
 	switch($method)
 	{
-		case 'add_to_deck':
-			$data = add_to_deck($_POST['player_id'], $_POST['deck_id'], $_POST['card_id']);
+		case 'addToDeck':
+			$data = add_to_deck($_POST['playerId'], $_POST['deckId'], $_POST['cardId']);
 		break;
 		case 'remove_from_deck':
-			$data = remove_from_deck($_POST['player_id'], $_POST['deck_id'], $_POST['card_order']);
+			$data = remove_from_deck($_POST['player_id'], $_POST['deckId'], $_POST['cardOrder']);
 		break;
 		case 'test':
 			require_once('inc/DataCache.php');
 			$data = json_encode(get_all_cards());
 		break;
+		case 'testCard':
+			require_once('inc/DataCache.php');
+			$data = json_encode(get_all_cards());
+		break;
+			
+		case 'testStamina':
+			require_once('inc/Common.php');
+			require_once('inc/DataCache.php');
+			$playerId = $_GET['playerId'];
+			$dec_sta = $_GET['useStamina'];
+			$player = getPlayerInfo($playerId);
+			debug_print($player);
+			$ret = updateStamina($player, $dec_sta);
+		break;
+			
+		case 'startMission':
+			$missionId = $_GET['missionId'];
+			require_once('inc/BattleManager.php');
+			startMission($playerId, $missionId);
+		break;
+		
+		case 'clearCache':
+			require_once('inc/CacheManager.php');
+			CacheManager::clearCache();
+		break;
+		
+		default:
+		
 	}
 	
 	print_r($data);

@@ -5,14 +5,13 @@ require_once('inc/Common.php');
 require_once('inc/DB.php');
 
 /**
-* get_call_cards() will get all the cards from cache memory, 
+* getAllCards() will get all the cards from cache memory, 
 * if the cards exist in cache memory, return all the cards
 * if not, will load cards from xml file, save them into cache memory, and return all the cards
 * Return: an array with all of the cards.
-* Examples: $allCards = get_all_cards();
+* Examples: $allCards = getAllCards();
 */
-function get_all_cards()
-{	
+function getAllCards() {	
 	// 1 day
 	$duration = 86400;
 	$group = "CARD";
@@ -20,8 +19,7 @@ function get_all_cards()
 	
 	$cachedCards = CacheManager::getValue($key, $group);
 	
-	if(!$cachedCards)
-	{
+	if(!$cachedCards) {
 		// parse cards from xml file
 		$cachedCards = getCardsFromXML();//xml2array(file_get_contents('./xml/cards.xml'), 1, 'attribute');
 		// save cards into cache memory
@@ -32,27 +30,69 @@ function get_all_cards()
 }
 
 /**
-* get_card_info() gets the detail information of one specified card
-* Arguments: $card_id - the card id
+* getCardInfo() gets the detail information of one specified card
+* Arguments: $cardId - the card id
 * Return: A card object
-* Examples: $card_id = get_card_info(10001);
+* Examples: $cardId = getCardInfo(10001);
 */
-function get_card_info($card_id)
-{
+function getCardInfo($cardId) {
 	$group = "CARD";
 	
-	$cachedCard = CacheManager::getValue($card_id, $group);
-	if(!$cachedCard)
-	{
+	$cachedCard = CacheManager::getValue($cardId, $group);
+	if(!$cachedCard) {
 		// parse cards from xml file
-		$allCards = get_all_cards();
-		$cachedCard = $allCards[$card_id];
+		$allCards = getAllCards();
+		$cachedCard = $allCards[$cardId];
 		// save cards into cache memory
-		CacheManager::setValue($card_id, $group, $cachedCard, 86400);
+		CacheManager::setValue($cardId, $group, $cachedCard, 86400);
 	}
 	
-	return cachedCards;
+	return $cachedCard;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getAllMissions() {	
+	// 1 day
+	$duration = 86400;
+	$group = "MISSION";
+	$key = "all_missions";
+	
+	$missions = CacheManager::getValue($key, $group);
+	
+	if(!$missions) {
+		$missions = getMissionsFromXML();
+		CacheManager::setValue($key, $group, $missions, $duration);
+	}
+	
+	return $missions;
+}
+
+function getMissionInfo($missionId) {
+	$group = "MISSION";
+	
+	$mission = CacheManager::getValue($missionId, $group);
+	if(!$mission) {
+		$allMissions = getAllMissions();
+		$mission = $allMissions[$missionId];
+		CacheManager::setValue($missionId, $group, $mission, 86400);
+	}
+	
+	return $mission;
+}
+
+
+
 
 /**
 * get_player_info() gets detail information of a player
@@ -61,29 +101,44 @@ function get_card_info($card_id)
 * Arguments: $player_id - the player's id
 * Return: A player object contains all detail information of the player
 */
-function get_player_info($player_id)
-{
+function getPlayerInfo($playerId) {
 	$group = "PLAYER";
-	$cachedPlayer = CacheManager::getValue($player_id, $group);
-	if(!$cachedPlayer)
-	{
+	$playerId = mysql_real_escape_string($playerId);
+	$player = CacheManager::getValue($playerId, $group);
+	if(!$player) {
 		//get player's information from database
 		$db = DatabaseConnection::getInstance();
-		$cachedPlayer = $db->query('SELECT * FROM player WHERE id =' . $player_id);
-		//save into cache memory
-		CacheManager::setValue($player_id, $group, $cachedPlayer, 3600);
+		$record = $db->query('SELECT * FROM player WHERE id =' . $playerId);
+		
+		if ($record) {
+			$player = mysql_fetch_array($record);
+			//save into cache memory
+			CacheManager::setValue($playerId, $group, $player, 3600);
+		} else {
+			//error, not found
+		}
+		
 	}
 	
-	return $cachedPlayer;
+	return $player;
 }
 
 /**
 * update_player_info() saves player's information into cache memory
 */
-function update_player_info($player)
-{
-	CacheManager::setValue($player->id, 'PLAYER', $player, 3600);
+function updatePlayerInfo($player) {
+	CacheManager::setValue($player['id'], 'PLAYER', $player, 3600);
 }
+
+
+
+/*
+function getCurrentBattleByPlayer($playerId) {
+	$group = 'BATTLE';
+	$battle = CacheManager::getValue($playerId, $group);
+	return $battle;
+}
+*/
 
 
 

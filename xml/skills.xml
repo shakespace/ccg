@@ -1,16 +1,17 @@
-﻿<skills version="0.0.1">
+﻿<?xml version="1.0" encoding="UTF-8 "?>
+<skills version="0.0.1">
 
   <skill id="1" 
     name="鼓舞" 
-	desc="Increase attack by %x, last %n rounds."
+	desc="Increase attack by %x, last %r rounds."
 	type="active"
 	icon=""
 	anim=""
     />
 
   <skill id="2" 
-    name="辱骂" 
-	desc="Decrease attack by %x, last %n rounds."
+    name="呵斥" 
+	desc="Decrease attack by %x, last %r rounds."
 	type="active"
 	icon=""
 	anim=""
@@ -34,7 +35,7 @@
 
   <skill id="5" 
     name="冲阵" 
-	desc="Target has chance to get disorder, last %r rounds."
+	desc="Target has %c chance to get disorder, last %r rounds."
 	type="attack"
 	icon=""
 	anim=""
@@ -42,7 +43,7 @@
 
   <skill id="6" 
     name="困敌" 
-	desc="Cannot attack, last %r rounds."
+	desc="Target cannot attack, last %r rounds."
 	type="active"
 	icon=""
 	anim=""
@@ -57,8 +58,24 @@
     />
 
   <skill id="8" 
-    name="识破" 
+    name="援助" 
 	desc="Remove move imparing buffs."
+	type="active"
+	icon=""
+	anim=""
+    />
+
+  <skill id="9" 
+    name="火攻" 
+	desc="Does %x damage to target."
+	type="active"
+	icon=""
+	anim=""
+    />
+
+  <skill id="10" 
+    name="劫火" 
+	desc="Does %x damage to all enemy."
 	type="active"
 	icon=""
 	anim=""

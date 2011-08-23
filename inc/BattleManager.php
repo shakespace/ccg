@@ -1,4 +1,6 @@
-<?php
+﻿<?php
+
+
 
 function initMission($mid)
 {
@@ -14,8 +16,60 @@ function initMission($mid)
 	}
 }
 
-function start_mission($player_id, $mession_id)
+function startMission($playerId, $missionId)
 {
+	require_once('inc/Common.php');
+	require_once('inc/DataCache.php');
+	require_once('inc/Battle.class.php');
+	//check if player is already engaged in battle
+	$player = getPlayerInfo($playerId);
+	$battle = $player->current_battle;
+	if ($battle) { //not null
+		//remove curent battle
+	}
+	
+	$mission = getMissionInfo($missionId);
+	
+	//init
+	$battle = new Battle();
+	
+	$battle->id = $missionId;
+	
+	$battle->start_time = time();
+	/*
+	public $end_time;
+	
+	//????
+	public $version;
+	
+	//????,??vs???
+	public $player_role;
+	public $attacker_name;
+	public $defender_name;
+	public $attacher_deck;
+	public $defender_deck;
+	public $attacker_shuffle;
+	public $defender_shuffle;
+	
+	//????
+	public $win_condition;
+	public $win_condition_param;
+	public $lose_condition;
+	public $lose_condition_param;
+	public $current_round;
+	public $current_player;
+		
+		//??????????
+		public $actions;
+		
+		//????
+		public $battle_result;
+
+	*/
+	
+	//save to cache
+	$player['current_battle'] = $battle;
+	updatePlayerInfo($player);
 	
 }
 

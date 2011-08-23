@@ -1,12 +1,17 @@
-﻿<cards version="0.0.1">
+﻿<?xml version="1.0" encoding="UTF-8 "?>
+<cards version="0.0.1">
 
+<!--核心包-->
+
+  <!--注册时，二选一-->
   <card id="1" 
-    name="张角" 
-	type="Commander"
-	package="Original"
-	rarity="Special"
-	faction="Qun"
-	hp="12"
+    name="川哥" 
+	type="lord"
+	package="huangjin"
+	rarity="common"
+	occur="1"
+	faction="qun"
+	hp="5"
 	att=""
 	mp="4"
 	image=""
@@ -14,12 +19,29 @@
 	<skill id="1" faction="Shu" target="Select" cost="0" effect="1" last="1"/>
   </card>
 	
+  <!--注册时，二选一-->
   <card id="2" 
-    name="黄巾士兵" 
-	type="Army"
-	package="Original"
-	rarity="Common"
-	faction="Qun"
+    name="越妹" 
+	type="lord"
+	package="huangjin"
+	rarity="common"
+	occur="1"
+	faction="qun"
+	hp="5"
+	att=""
+	mp="4"
+	image=""
+    >
+	<skill id="1" faction="Shu" target="Select" cost="0" effect="1" last="1"/>
+  </card>
+	
+  <card id="3" 
+    name="民夫" 
+	type="unit"
+	package="huangjin"
+	rarity="common"
+	occur="0"
+	faction="qun"
 	hp="1"
 	att="1"
 	mp="1"
@@ -27,14 +49,45 @@
     >
   </card>
 
-  <card id="3" 
-    name="黄巾精兵" 
-	type="Army"
-	package="Original"
-	rarity="Common"
-	faction="Qun"
+  <card id="4" 
+    name="民兵" 
+	type="unit"
+	package="huangjin"
+	rarity="common"
+	occur="0"
+	faction="qun"
 	hp="2"
 	att="1"
+	mp="1"
+	image=""
+    >
+  </card>
+
+
+  <card id="5" 
+    name="山贼头目" 
+	type="lord"
+	package="huangjin"
+	rarity="common"
+	occur="1"
+	faction="qun"
+	hp="7"
+	att="0"
+	mp="2"
+	image=""
+    >
+  </card>
+
+
+  <card id="6" 
+    name="山贼" 
+	type="unit"
+	package="huangjin"
+	rarity="common"
+	occur="0"
+	faction="qun"
+	hp="1"
+	att="2"
 	mp="1"
 	image=""
     >

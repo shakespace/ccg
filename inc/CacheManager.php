@@ -12,7 +12,8 @@ class CacheManager
 	{
 		$cacheOption = array(
 			'cacheDir' => 'tmp/',
-			'lifeTime' => $duration
+			'lifeTime' => $duration,
+			'automaticSerialization' => true
 		);
 		
 		$cache = new Cache_Lite($cacheOption);
@@ -26,12 +27,28 @@ class CacheManager
 	public static function getValue($key, $group = null)
 	{
 		$cacheOption = array(
-			'cacheDir' => 'tmp/'
+			'cacheDir' => 'tmp/',
+			'automaticSerialization' => true
 		);
 		
 		$cache = new Cache_Lite($cacheOption);
 		
 		return $cache->get($key, $group);
+	}
+
+	/**
+	*
+	* Clear Cache
+	*/
+	public static function clearCache()
+	{
+		$cacheOption = array(
+			'cacheDir' => 'tmp/'
+		);
+		
+		$cache = new Cache_Lite($cacheOption);
+		
+		return $cache->clean();
 	}
 
 }	

@@ -40,7 +40,7 @@
 		public $guild_rank;
 		
 		//竞技场
-		public $arena_point;
+		public $arena_rating;
 		public $arena_rank;
 		
 		//成就
