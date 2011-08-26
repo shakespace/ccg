@@ -48,7 +48,7 @@ function xml2array($file_name, $index_base=0, $value_key=null) {
     xml_parse_into_struct($parser, trim($content), $xml_values); 
     xml_parser_free($parser); 
 	
-	if(!$xml_values) return;//file does not contain valid xml
+	if(!$xml_values) return array();//file does not contain valid xml
 
     //initializations 
     $parents = array(); //output xml tree traverse
@@ -125,7 +125,8 @@ function xml2array($file_name, $index_base=0, $value_key=null) {
 	}//foreach $xml_value
 	
 	
-	//debug_print($parents[0]);
+	debug_print('xml2array');
+	debug_print($parents[0]);
 	return($parents[0]);
 }
 
@@ -138,7 +139,7 @@ function getMissionsFromXML() {
 
 function getCardsFromXML() {
 	$obj = xml2array('xml/cards.xml', 1);
-	return $obj['cards']['1'];
+	return $obj['cards']['1']['card'];
 }
 
 function getSkillsFromXML() {
@@ -166,43 +167,44 @@ function getBuffsFromXML() {
 //return:
 //>=0 : successfully consumed
 //<0  : not enough stamina
-function updateStamina(&$player, $stamina_consume=0) {
-	debug_print('Player had '.$player['stamina'].' stamina by '.$player['stamina_last_update']);
-	debug_print('Player uses '.$stamina_consume.' points of stamina');
+function updateStamina(&$player, $staminaConsume=0) {
+	debug_print('Player had '.$player['stamina'].' stamina by '.$player['staminaLastUpdate']);
+	debug_print('Player uses '.$staminaConsume.' points of stamina');
 	
-	$current_time = time();
-	$new_stamina = $player['stamina'];
-	$prev_min = floor($player['stamina_last_update'] / 60);
-	$current_min = floor($current_time / 60);
+	$currentTime = time();
+	$newStamina = $player['stamina'];
+	$prevMin = floor($player['staminaLastUpdate'] / 60);
+	$currentMin = floor($currentTime / 60);
 	require_once('inc/Const.php');
-	if ($current_min > $prev_min) {
-		$new_stamina += ($current_min - $prev_min) * constant('STAMINA_PER_MIN');
-		if ($new_stamina > constant('STAMINA_MAX')) $new_stamina = constant('STAMINA_MAX');
+	if ($currentMin > $prevMin) {
+		$newStamina += ($currentMin - $prevMin) * constant('STAMINA_PER_MIN');
+		if ($newStamina > constant('STAMINA_MAX')) $newStamina = constant('STAMINA_MAX');
 	}
-	$result = $new_stamina;
-	if ($stamina_consume > 0 ) {
-		if ($new_stamina > $stamina_consume) {
-			$new_stamina -= $stamina_consume;
-			$player['stamina'] = $new_stamina;
-			$player['stamina_last_update'] = $current_time;
-			$result = $new_stamina;
+	$result = $newStamina;
+	if ($staminaConsume > 0 ) {
+		if ($newStamina > $staminaConsume) {
+			$newStamina -= $staminaConsume;
+			$player['stamina'] = $newStamina;
+			$player['staminaLastUpdate'] = $currentTime;
+			$result = $newStamina;
 		} else {
 			$result = -1;
 			debug_print('Not enough stamina!');
 		}
 	} 
 	updatePlayerInfo($player);
-	debug_print('Now player has '.$player['stamina'].' stamina by '.$player['stamina_last_update']);
+	debug_print('Now player has '.$player['stamina'].' stamina by '.$player['staminaLastUpdate']);
 	return $result;
 }
 
 
 
 //********************************
-//  time related
+//  deck shuffle
 //********************************
 
-
+function shuffleUserDeck() {
+}
 
 
 

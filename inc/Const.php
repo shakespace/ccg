@@ -18,11 +18,11 @@
 	//士兵：unit
 	//计策：spell
 	//装备：artifact
-	define('CARD_TYPE_LORD',0);
-	define('CARD_TYPE_BUILDING',1);
-	define('CARD_TYPE_UNIT',2);
-	define('CARD_TYPE_SPELL',3);
-	define('CARD_TYPE_ARTIFACT',4);
+	define('CARD_TYPE_LORD','lord');
+	define('CARD_TYPE_BUILDING','building');
+	define('CARD_TYPE_UNIT','unit');
+	define('CARD_TYPE_SPELL','spell');
+	define('CARD_TYPE_ARTIFACT','artifact');
 	
 	//卡牌在牌组中允许出现次数：CARD_OCCUR_
 	//唯一：UNIQUE
@@ -32,10 +32,10 @@
 
 	//卡牌势力或者阵营：CARD_FACTION_
 	//魏、蜀、吴、群
-	define('CARD_FACTION_WEI',0);
-	define('CARD_FACTION_SHU',1);
-	define('CARD_FACTION_WU',2);
-	define('CARD_FACTION_QUN',3);
+	define('CARD_FACTION_WEI','wei');
+	define('CARD_FACTION_SHU','shu');
+	define('CARD_FACTION_WU','wu');
+	define('CARD_FACTION_QUN','qun');
 	
 	//卡包: CARD_PACKAGE_
 	//非玩家：npc
@@ -44,22 +44,22 @@
 	//官渡之战：GUANDU
 	//赤壁之战：CHIBI
 	//三国鼎立：SANGUO
-	define('CARD_PACKAGE_NPC',0);
-	define('CARD_PACKAGE_REWARD',1);
-	define('CARD_PACKAGE_HUANGJIN',2);
-	define('CARD_PACKAGE_GUANDU',3);
-	define('CARD_PACKAGE_CHIBI',4);
-	define('CARD_PACKAGE_SANGUO',5);
+	define('CARD_PACKAGE_NPC','npc');
+	define('CARD_PACKAGE_REWARD','reward');
+	define('CARD_PACKAGE_HUANGJIN','huangjin');
+	define('CARD_PACKAGE_GUANDU','guandu');
+	define('CARD_PACKAGE_CHIBI','chibi');
+	define('CARD_PACKAGE_SANGUO','sanguo');
 	
 	//卡牌稀有度: CARD_RARITY_
 	//普通common: black
 	//罕见uncommon: silver
 	//稀有rare: gold
 	//史诗epic: purple
-	define('CARD_RARITY_COMMON',0);
-	define('CARD_RARITY_UNCOMMON',1);
-	define('CARD_RARITY_RARE',2);
-	define('CARD_RARITY_EPIC',3);
+	define('CARD_RARITY_COMMON','common');
+	define('CARD_RARITY_UNCOMMON','uncommon');
+	define('CARD_RARITY_RARE','rare');
+	define('CARD_RARITY_EPIC','epic');
 	
 	//玩家类型：PLAYER_TYPE_
 	//内部CCG

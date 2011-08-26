@@ -1,97 +1,133 @@
-﻿<?xml version="1.0" encoding="UTF-8 "?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <cards version="0.0.1">
 
 <!--核心包-->
 
   <!--注册时，二选一-->
-  <card id="1" 
-    name="川哥" 
-	type="lord"
-	package="huangjin"
-	rarity="common"
-	occur="1"
-	faction="qun"
-	hp="5"
-	att=""
-	mp="4"
-	image=""
-    >
-	<skill id="1" faction="Shu" target="Select" cost="0" effect="1" last="1"/>
+  <card id="1" name="川哥" type="lord" package="huangjin" rarity="common"
+    occur="1" faction="qun" hp="5" att="" mp="4" image=""    >
+	<skill id="1" faction="qun" target="select" cost="0" effect="1" last="1" chance=""/>
   </card>
 	
   <!--注册时，二选一-->
-  <card id="2" 
-    name="越妹" 
-	type="lord"
-	package="huangjin"
-	rarity="common"
-	occur="1"
-	faction="qun"
-	hp="5"
-	att=""
-	mp="4"
-	image=""
-    >
-	<skill id="1" faction="Shu" target="Select" cost="0" effect="1" last="1"/>
+  <card id="2" name="越妹" type="lord" package="huangjin" rarity="common"
+	occur="1" faction="qun" hp="5" att="" mp="4" image=""    >
+	<skill id="1" faction="qun" target="select" cost="0" effect="1" last="1" chance=""/>
   </card>
 	
-  <card id="3" 
-    name="民夫" 
-	type="unit"
-	package="huangjin"
-	rarity="common"
-	occur="0"
-	faction="qun"
-	hp="1"
-	att="1"
-	mp="1"
-	image=""
-    >
+  <card id="3" name="民夫" type="unit" package="huangjin" rarity="common"
+	occur="0" faction="qun" hp="1" att="1" mp="1" image=""    >
   </card>
 
-  <card id="4" 
-    name="民兵" 
-	type="unit"
-	package="huangjin"
-	rarity="common"
-	occur="0"
-	faction="qun"
-	hp="2"
-	att="1"
-	mp="1"
-	image=""
-    >
+  <card id="4" name="民兵" type="unit" package="huangjin" rarity="common"
+	occur="0" faction="qun" hp="2" att="1" mp="1" image=""    >
   </card>
 
 
-  <card id="5" 
-    name="山贼头目" 
-	type="lord"
-	package="huangjin"
-	rarity="common"
-	occur="1"
-	faction="qun"
-	hp="7"
-	att="0"
-	mp="2"
-	image=""
-    >
+  <card id="5" name="山贼大王" type="lord" package="huangjin" rarity="common"
+	occur="1" faction="qun" hp="7" att="0" mp="2" image=""    >
   </card>
 
 
-  <card id="6" 
-    name="山贼" 
-	type="unit"
-	package="huangjin"
-	rarity="common"
-	occur="0"
-	faction="qun"
-	hp="1"
-	att="2"
-	mp="1"
-	image=""
-    >
+  <card id="6" name="山贼" type="unit" package="huangjin" rarity="common"
+	occur="0" faction="qun" hp="2" att="1" mp="1" image=""    >
+  	<skill id="13" faction="" target="self" cost="0" effect="1" last="1" chance="50%"/>
   </card>
+
+  <card id="7" name="以逸待劳" type="spell" package="huangjin" rarity="uncommon"
+	occur="0" faction="qun" hp="" att="" mp="1" image=""    >
+  </card>
+
+  <card id="8" name="山寨" type="building" package="huangjin" rarity="common"
+	occur="0" faction="qun" hp="2" att="" mp="" image=""    >
+  	<skill id="11" faction="" target="lord" cost="0" effect="" last="" chance=""/>
+  </card>
+
+  <card id="9" name="兵营" type="building" package="huangjin" rarity="common"
+	occur="0" faction="qun" hp="2" att="" mp="" image=""    >
+  	<skill id="12" faction="qun" target="random" cost="0" effect="1" last="1" chance=""/>
+  </card>
+
+
+  <card id="10" name="山贼头目" type="unit" package="huangjin" rarity="uncommon"
+	occur="0" faction="qun" hp="3" att="1" mp="1" image=""    >
+  	<skill id="13" faction="" target="self" cost="0" effect="2" last="1" chance="50%"/>
+  </card>
+
+  <card id="11" name="食盐" type="artifact" package="huangjin" rarity="common"
+	occur="0" faction="all" hp="" att="" mp="" image=""    >
+  	<skill id="14" faction="" target="main" cost="0" effect="1" last="-1" chance=""/>
+  </card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

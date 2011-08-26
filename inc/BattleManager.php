@@ -23,7 +23,7 @@ function startMission($playerId, $missionId)
 	require_once('inc/Battle.class.php');
 	//check if player is already engaged in battle
 	$player = getPlayerInfo($playerId);
-	$battle = $player->current_battle;
+	$battle = $player->currentBattle;
 	if ($battle) { //not null
 		//remove curent battle
 	}
@@ -35,7 +35,7 @@ function startMission($playerId, $missionId)
 	
 	$battle->id = $missionId;
 	
-	$battle->start_time = time();
+	$battle->startTime = time();
 	/*
 	public $end_time;
 	
@@ -68,7 +68,7 @@ function startMission($playerId, $missionId)
 	*/
 	
 	//save to cache
-	$player['current_battle'] = $battle;
+	$player['currentBattle'] = $battle;
 	updatePlayerInfo($player);
 	
 }
@@ -80,7 +80,7 @@ function startMission($playerId, $missionId)
 *				$action - the action which player makes
 * Return: 
 */
-function update_battle($player_id, $battle_id, $action)
+function updateBattle($playerId, $battleId, $action)
 {
 	
 }

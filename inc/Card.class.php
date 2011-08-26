@@ -9,18 +9,18 @@ class Card
 	public $buff;		//array
 
 	//基础属性。因为可能被装备所修改。
-	public $max_hp;		//int
-	public $max_mp;		//int
-	public $base_attack;	//int
+	public $maxHp;		//int
+	public $maxMp;		//int
+	public $baseAttack;	//int
 	//当前属性
 	public $hp;
 	public $mp;
 	public $attack;
 	
 	//状态：死亡=-1。可用=0。若x>0则表示还需要x轮才能变为可用状态。
-	public $ready_status;  //int
+	public $readyStatus;  //int
 	//本回合是否已经用过主动技能。1=用过了。0=没用过
-	public $skill_status; //int
+	public $skillStatus; //int
 	
 	public $skills;	//array of skill tuples: (id and all params)
 	

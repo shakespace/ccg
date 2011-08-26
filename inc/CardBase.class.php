@@ -28,9 +28,9 @@ class CardBase
 	public $faction;
 	
 	//生命值，蓝量，攻击力
-	public $max_hp;		//int
-	public $max_mp;		//int
-	public $base_attack;	//int
+	public $maxHp;		//int
+	public $maxMp;		//int
+	public $baseAttack;	//int
 	
 	
 	//技能, 技能顺序是什么?

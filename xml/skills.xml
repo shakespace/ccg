@@ -50,7 +50,7 @@
     />
 
   <skill id="7" 
-    name="沉稳" 
+    name="果敢" 
 	desc="Immune to move imparing buffs."
 	type="passive"
 	icon=""
@@ -77,6 +77,38 @@
     name="劫火" 
 	desc="Does %x damage to all enemy."
 	type="active"
+	icon=""
+	anim=""
+    />
+	
+  <skill id="11" 
+    name="城墙" 
+	desc="代替主公承受攻击."
+	type="defense"
+	icon=""
+	anim=""
+    />
+
+  <skill id="12" 
+    name="练兵" 
+	desc="在回合开始，随机增加我方某支部队 %x 点攻击."
+	type="begin"
+	icon=""
+	anim=""
+    />
+
+  <skill id="13" 
+    name="血性" 
+	desc="有 %c 概率增加自己 %x 点攻击，持续 %r 轮."
+	type="active"
+	icon=""
+	anim=""
+    />
+
+  <skill id="14" 
+    name="体力" 
+	desc="增加 %x 点体力及上限."
+	type="enter"
 	icon=""
 	anim=""
     />

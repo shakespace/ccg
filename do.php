@@ -44,6 +44,20 @@
 			startMission($playerId, $missionId);
 		break;
 		
+		case 'testAddCard':
+			$deckId = $_GET['deckId'];
+			$cardId = $_GET['cardId'];
+			require_once('inc/DeckManager.php');
+			addToDeck($playerId, $deckId, $cardId);
+		break;
+		
+		case 'testRemoveCard':
+			$deckId = $_GET['deckId'];
+			$order = $_GET['order'];
+			require_once('inc/DeckManager.php');
+			removeFromDeck($playerId, $deckId, $order);
+		break;
+		
 		case 'clearCache':
 			require_once('inc/CacheManager.php');
 			CacheManager::clearCache();

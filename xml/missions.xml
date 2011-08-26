@@ -1,42 +1,125 @@
 ﻿<?xml version="1.0" encoding="UTF-8 "?>
 <missions version="0.0.1">
-  <map id="1" name="" prereq="0">
+  <map id="1" name="穿越汉末" prereq="0">
 
-    <mission id="1" type="normal" name="新手上路（一）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
-  	  <deck lord="5" size="2">
+    <mission id="1" type="normal" name="初来乍到（一）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
+  	  <deck size="2">
+	    <lord id="5" equip="" />
         <group id="1" select="2">
-          <card id="6" multi="2" />
+          <card id="6" multi="2" equip=""/>
         </group>
       </deck>
       <preset />
 	  <intro>
-	    <message seq="1" image="" text=""/>
-	    <message seq="2" image="" text=""/>
-	    <message seq="3" image="" text=""/>
+	    <message seq="1" image="" text="%name%：咦？我不是在上网吗？怎么忽然间到这里来了？这里是哪里？"/>
+	    <message seq="2" image="" text="%name%：哇，古代人？是在拍戏吗？"/>
+	    <message seq="3" image="" text="民夫：救、救命！"/>
+	    <message seq="4" image="" text="山贼：把粮食和财宝都交出来！"/>
 	  </intro>
 	  <reward>
 	    <item id="4" count="2" droprate="1" firsttimeonly="yes">
 	  </reward>
     </mission>
 
-    <mission id="2" type="normal" name="新手上路（二）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
-  	  <deck lord="5" size="4">
+    <mission id="2" type="normal" name="初来乍到（二）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
+  	  <deck size="4">
+	    <lord id="5" equip="" />
         <group id="1" select="4">
           <card id="6" multi="4" />
         </group>
       </deck>
       <preset />
 	  <intro>
-	    <message seq="1" image="" text=""/>
-	    <message seq="2" image="" text=""/>
-	    <message seq="3" image="" text=""/>
+	    <message seq="1" image="" text="%name%：真的杀人了！"/>
+	    <message seq="2" image="" text="民兵：多谢义士帮助我等打退山贼。"/>
+	    <message seq="3" image="" text="%name%：难道我真的穿越了？现在是什么年代？"/>
+	    <message seq="4" image="" text="民兵：如今乃是大汉中平元年。"/>
+	    <message seq="5" image="" text="%name%：……这是哪年啊，我的历史全都还给老师了。不对，学校里根本没教过！"/>
+	    <message seq="6" image="" text="山贼头目：小的们！给我上！"/>
 	  </intro>
 	  <reward>
-	    <item id="6" count="1" droprate="1" firsttimeonly="yes">
+	    <item id="6" count="2" droprate="1" firsttimeonly="yes">
 	  </reward>
     </mission>
 
-	<mission id="501" type="raid" name="县衙" prereq="2">
+    <mission id="2" type="normal" name="初来乍到（三）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
+  	  <deck size="6">
+	    <lord id="5" equip="" />
+        <group id="1" select="6">
+          <card id="6" multi="4" />
+          <card id="10" multi="2" />
+        </group>
+      </deck>
+      <preset />
+	  <intro>
+	    <message seq="1" image="" text="山贼：饶命啊！我愿投降！"/>
+	    <message seq="2" image="" text="%name%：弃暗投明，缴枪不杀！"/>
+	    <message seq="3" image="" text="山贼头目：大王，县城有一个奇装异服的家伙带领民兵反抗我们。"/>
+	    <message seq="4" image="" text="山贼大王：小小县城，不可能是本大王的对手！"/>
+	  </intro>
+	  <reward>
+	    <item id="7" count="1" droprate="1" firsttimeonly="yes">
+	  </reward>
+    </mission>
+
+    <mission id="2" type="normal" name="初来乍到（四）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
+  	  <deck size="8">
+	    <lord id="5" equip="11" />
+        <group id="1" select="8">
+          <card id="6" multi="3" />
+          <card id="10" multi="4" />
+          <card id="8" multi="1" />
+        </group>
+      </deck>
+      <preset />
+	  <intro>
+	    <message seq="1" image="" text="红袖：山贼势大，我们最好以逸待劳。"/>
+	    <message seq="2" image="" text="%name%：姑娘说得有理。"/>
+	    <message seq="3" image="" text="山贼大王：美女，哪里走！"/>
+	  </intro>
+	  <reward>
+	    <item id="9" count="1" droprate="1" firsttimeonly="yes">
+	  </reward>
+    </mission>
+
+    <mission id="2" type="normal" name="初来乍到（五）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
+  	  <deck size="10">
+	    <lord id="5" equip="11" />
+        <group id="1" select="10">
+          <card id="6" multi="4" />
+          <card id="10" multi="4" />
+          <card id="8" multi="2" />
+	    </group>
+      </deck>
+      <preset />
+	  <intro>
+	    <message seq="1" image="" text="红袖：建造兵营，可以训练民兵。"/>
+	  </intro>
+	  <reward>
+	    <item id="11" count="1" droprate="1" firsttimeonly="yes">
+	  </reward>
+    </mission>
+
+    <mission id="2" type="normal" name="初来乍到（六）" prereq="0" coin="10" exp="10" win="defeat" lose="lose,50">
+  	  <deck size="10">
+	    <lord id="5" equip="11" />
+        <group id="1" select="10">
+          <card id="6" multi="2" />
+          <card id="10" multi="4" />
+          <card id="7" multi="2" />
+          <card id="8" multi="2" />
+	    </group>
+      </deck>
+      <preset />
+	  <intro>
+	    <message seq="1" image="" text="红袖：食盐可以让人变得有力气。"/>
+	  </intro>
+	  <reward>
+	    <item id="10" count="2" droprate="1" firsttimeonly="yes">
+	  </reward>
+    </mission>
+
+	<mission id="1001" type="dungeon" name="十常侍" prereq="18">
 	</mission>
 
 	<exit nextmap="2" prereq="2" />

@@ -3,6 +3,8 @@
 require_once('inc/CacheManager.php');
 require_once('inc/Common.php');
 require_once('inc/DB.php');
+require_once('inc/Player.class.php');
+require_once('inc/Deck.class.php');
 
 /**
 * getAllCards() will get all the cards from cache memory, 
@@ -26,6 +28,8 @@ function getAllCards() {
 		CacheManager::setValue($key, $group, $cachedCards, $duration);
 	}
 	
+	//debug_print('all cards ');
+	//debug_print($cachedCards);
 	return $cachedCards;
 }
 
@@ -46,7 +50,8 @@ function getCardInfo($cardId) {
 		// save cards into cache memory
 		CacheManager::setValue($cardId, $group, $cachedCard, 86400);
 	}
-	
+	//debug_print('card '.$cardId);
+	//debug_print($cachedCard);
 	return $cachedCard;
 }
 
@@ -108,10 +113,41 @@ function getPlayerInfo($playerId) {
 	if(!$player) {
 		//get player's information from database
 		$db = DatabaseConnection::getInstance();
-		$record = $db->query('SELECT * FROM player WHERE id =' . $playerId);
+		$record = $db->query("SELECT * FROM player WHERE id=$playerId");
 		
 		if ($record) {
-			$player = mysql_fetch_array($record);
+			$player = new Player(mysql_fetch_array($record, MYSQL_ASSOC));
+			
+			//get Cards
+			$player->cards = array();
+			$cardRecord = $db->query("SELECT * FROM player_cards WHERE playerId=$playerId");
+			while ($row = mysql_fetch_array($cardRecord, MYSQL_ASSOC)) {
+				$player->cards[$row['cardId']] = $row['count'];
+			}
+			
+			//get Decks
+			$player->decks = array();
+			$deckRecord = $db->query("SELECT * FROM player_decks WHERE playerId=$playerId");
+			while ($row = mysql_fetch_array($deckRecord, MYSQL_ASSOC)) {
+				if (!isset($player->decks[$row['deckId']])) {
+					$player->decks[$row['deckId']] = new Deck($row['deckId']);
+				}
+				$deck = $player->decks[$row['deckId']];
+				$deck->deckCards[$row['order']] = $row['cardId'];
+				$deck->equipments[$row['order']] = $row['artifactId'];
+			}
+			
+			//get mission records
+			$player->missionRecords = array(
+				'numTries' => array(),
+				'numWins' => array()
+			);
+			$missionRecord = $db->query("SELECT * FROM player_mission_records WHERE playerId=$playerId");
+			while ($row = mysql_fetch_array($missionRecord, MYSQL_ASSOC)) {
+				$player->missionRecords['numTries'][$row['missionId']] = $row['numTries'];
+				$player->missionRecords['numWins'][$row['missionId']] = $row['nuWins'];
+			}
+			
 			//save into cache memory
 			CacheManager::setValue($playerId, $group, $player, 3600);
 		} else {
@@ -126,8 +162,34 @@ function getPlayerInfo($playerId) {
 /**
 * update_player_info() saves player's information into cache memory
 */
-function updatePlayerInfo($player) {
-	CacheManager::setValue($player['id'], 'PLAYER', $player, 3600);
+function updatePlayerInfo($player, $updateInfo=null, $updateDeck=null, $updateCards=null, $updateMissionRecords=null) {
+	CacheManager::setValue($player->id, 'PLAYER', $player, 3600);
+	//update db
+	
+	//--- TO DO: convert everything below into SP ---
+	
+	/*
+	$db = DatabaseConnection::getInstance();
+	$playerId = $player->id;
+	
+	if (!$updateInfo) {
+		//update basic info
+	}
+	if (!$updateDeck) {
+		//update player_deck
+		$deckId = $updateDeck['deckId'];
+		$order = $updateDeck['order'];
+		$cardId = $player->decks[$deckId]->deckCards[$order];
+		$equipId = $player->decks[$deckId]->equipments[$order];
+		//first do delete
+		$record = $db->query("DELETE FROM player_decks WHERE playerId=$playerId AND deckId=$deckId AND order=$order");
+		//add new value back
+		if ($cardId && $cardId>0) {
+			if (!$equipId) $equipId = 'null';
+			$record = $db->query("INSERT INTO player_decks (playerId, deckId, order, cardId, equipId) VALUES ($playerId, $deckId, $order, $cardId, $equipId)");
+		}
+	}
+	*/
 }
 
 

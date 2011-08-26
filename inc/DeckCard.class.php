@@ -3,12 +3,12 @@
 class DeckCard
 {
 	public $order;
-	public $card_id;
-	public $artifact_id;
+	public $cardId;
+	public $artifactId;
 	
-	function DeckCard($card_id, $order)
+	function DeckCard($cardId, $order)
 	{
-		$this->card_id = $card_id;
+		$this->cardId = $cardId;
 		$this->order = $order;
 	}
 	
