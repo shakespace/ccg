@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `player` (
   `stamina` int(10) unsigned NOT NULL,
   `staminaLastUpdate` bigint(10) unsigned NOT NULL,
   `defaultDeck` int(10) unsigned NOT NULL DEFAULT '1',
-  `currentBattle` int(10) unsigned DEFAULT '1',
+  `currentBattle` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=gbk AUTO_INCREMENT=3 ;
 
