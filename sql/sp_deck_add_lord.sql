@@ -38,57 +38,17 @@ BEGIN
 		AND `order` = 0;
 		
 		-- 2, move the old one LORD back into player's cards collection
-		-- -- check whether player own this card
-		
-		SELECT cardCount = COUNT(1)
-		FROM `player_cards`
-		WHERE `playerId` = playerId
-		AND		`cardId` = oldCardId;
-		
-		IF( IFNULL(cardCount,0)>0) THEN
-			-- if true, add the count of this card in player's cards collection
-			UPDATE `player_cards`
-			SET		`count` = IFNULL(`count`,0) + 1
-			WHERE `playerId` = playerId
-			AND		`cardId` = oldCardId;	
-		ELSE
-			-- otherwise, insert this card into player's cards collection
-			INSERT INTO `player_cards` (`playerId`,`cardId`,`count`)
-			VALUES(playerId,oldCardId,0);
-		END IF;
+		CALL `sp_player_cards_add`(playerId, oldCardId);
 		
 		-- 3, check if this card has antifact
 		IF( IFNULL(antifactId,0) > 0) THEN
 			-- if true, move this antifact card back into player's cards collection
-			SET cardCount = 0;
-			
-			SELECT cardCount = COUNT(1)
-			FROM `player_cards`
-			WHERE `playerId` = playerId
-			AND		`cardId` = antifactId;
-			
-			IF( IFNULL(cardCount, 0)>0) THEN
-				-- if true, add the count of this card into player's cards collection
-				UPDATE `player_cards`
-				SET		`count` = IFNULL(`count`, 0) + 1
-				WHERE `playerId` = playerId
-				AND		`cardId` = antifactId;	
-			ELSE
-				-- otherwise, insert this card into player's cards collection
-				INSERT INTO `player_cards` (`playerId`, `cardId`, `count`)
-				VALUES(playerId, antifactId, 0);
-			END IF;
+			CALL `sp_player_cards_add`(playerId, antifactId);
 		END IF;
 	END IF;
 	
 	-- remove this card from player's cards collection
-	UPDATE `player_cards`
-	SET		`count` =  CASE 
-							WHEN IFNULL(`count`, 0) > 0 THEN `count` - 1
-							ELSE 0 
-						END
-	WHERE `playerId` = playerId
-	AND		`cardId` = cardId;	
+	CALL `sp_player_cards_discard`(playerId, cardId);
 	
 	COMMIT;
 
